@@ -1,0 +1,265 @@
+/* Ghost Summit — inline feed splash. Pure HTML/CSS + one PNG + one inline SVG.
+   Kept deliberately light (no fonts/scripts/images beyond the adventurer) so it
+   renders instantly in the feed; the heavy Phaser game lives in game.html. */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold: #ffcd75;
+  --text: #c7cde8;
+  --bg-top: #0d0e17;
+  --bg-bot: #1a1c2c;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.app {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  padding: clamp(12px, 3vh, 28px);
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bot) 100%);
+  font-family: 'Arial Black', 'Arial Narrow', Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Warm summit glow bleeding down from the top. */
+.glow {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140%;
+  height: 90%;
+  background: radial-gradient(ellipse at center, rgba(255, 210, 130, 0.32) 0%, rgba(255, 210, 130, 0) 62%);
+  pointer-events: none;
+}
+
+/* A simple dark mountain ridge along the bottom. */
+.mountains {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background: #090a12;
+  clip-path: polygon(0% 100%, 0% 58%, 18% 30%, 34% 52%, 52% 14%, 70% 48%, 86% 26%, 100% 56%, 100% 100%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Edge vignette for depth. */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(5, 6, 10, 0) 45%, rgba(5, 6, 10, 0.85) 100%);
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.6vh, 14px);
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(38px, 11vw, 84px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  line-height: 0.95;
+  color: var(--gold);
+  -webkit-text-stroke: clamp(1px, 0.4vw, 3px) #000;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.6), 0 0 22px rgba(255, 205, 117, 0.55);
+}
+
+.tagline {
+  font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  font-size: clamp(12px, 3.2vw, 18px);
+  line-height: 1.35;
+  color: var(--text);
+  max-width: 34ch;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* --- The hero + the ghost hunting them --- */
+.tableau {
+  position: relative;
+  width: 100%;
+  height: clamp(112px, 24vh, 200px);
+  margin: clamp(2px, 0.5vh, 8px) 0;
+}
+
+.hero {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  height: clamp(84px, 18vh, 158px);
+  width: auto;
+  transform: translateX(-50%);
+  image-rendering: auto;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.6));
+  animation: bob 2.6s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* A dark rock ledge under the adventurer's feet. */
+.ledge {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: clamp(120px, 34vw, 220px);
+  height: clamp(14px, 3vh, 26px);
+  transform: translateX(-50%);
+  background: #070811;
+  border-radius: 50% 50% 12px 12px / 70% 70% 12px 12px;
+  z-index: 1;
+}
+
+.ghost {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: clamp(92px, 20vh, 172px);
+  width: auto;
+  transform: translate(-118%, 0);
+  animation: float 3.4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.ghost-body {
+  fill: #eaf0ff;
+  opacity: 0.9;
+}
+
+.ghost-eye {
+  fill: #0b0c1a;
+}
+
+.ghost-glow {
+  position: absolute;
+  left: 50%;
+  top: 6%;
+  width: clamp(120px, 26vw, 210px);
+  height: clamp(120px, 26vw, 210px);
+  transform: translate(-128%, 0);
+  background: radial-gradient(circle at center, rgba(190, 215, 255, 0.5) 0%, rgba(190, 215, 255, 0) 66%);
+  animation: pulse 3.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --- Call to action --- */
+.cta {
+  margin-top: clamp(2px, 1vh, 8px);
+  padding: clamp(10px, 1.6vh, 15px) clamp(22px, 6vw, 40px);
+  border: none;
+  border-radius: 999px;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(15px, 4vw, 24px);
+  letter-spacing: 1px;
+  color: #23180a;
+  background: linear-gradient(180deg, #ffe0a0 0%, #ffcd75 55%, #f0ad4a 100%);
+  box-shadow: 0 6px 0 #b9832e, 0 10px 24px rgba(255, 205, 117, 0.4);
+  cursor: pointer;
+  animation: cta-pulse 1.8s ease-in-out infinite;
+}
+
+.cta:active {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 #b9832e, 0 6px 16px rgba(255, 205, 117, 0.35);
+}
+
+.hook {
+  font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  font-size: clamp(10px, 2.6vw, 14px);
+  color: #8f96b8;
+  letter-spacing: 0.3px;
+}
+
+/* Only break the tagline onto two lines on wider cards. */
+.wide-only {
+  display: none;
+}
+@media (min-width: 460px) {
+  .wide-only {
+    display: inline;
+  }
+}
+
+/* Hide the art on very short cards so the title + CTA always fit. */
+@media (max-height: 340px) {
+  .tableau {
+    display: none;
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-6px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-118%, 0);
+  }
+  50% {
+    transform: translate(-118%, -12px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes cta-pulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .ghost,
+  .ghost-glow,
+  .cta {
+    animation: none;
+  }
+}

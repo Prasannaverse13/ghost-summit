@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="splash.css" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, user-scalable=0"
+    />
+    <title>Ghost Summit</title>
+  </head>
+  <body>
+    <main class="app" id="app" role="button" tabindex="0" aria-label="Play today's Ghost Summit climb">
+      <!-- Atmosphere layers (pure CSS) -->
+      <div class="glow" aria-hidden="true"></div>
+      <div class="mountains" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
+
+      <div class="card">
+        <h1 class="title">GHOST SUMMIT</h1>
+        <p class="tagline">
+          Three climbs a day. Race the ghosts of everyone<br class="wide-only" />
+          who reached for the summit before you.
+        </p>
+
+        <!-- The hero + the thing hunting them -->
+        <div class="tableau" aria-hidden="true">
+          <div class="ghost-glow"></div>
+          <svg class="ghost" viewBox="0 0 124 156" xmlns="http://www.w3.org/2000/svg">
+            <!-- Body: domed top, straight sides, scalloped bottom (matches the in-game ghost) -->
+            <path
+              class="ghost-body"
+              d="M10 62 A52 52 0 0 1 114 62 L114 130
+                 A13 13 0 0 1 88 130 A13 13 0 0 1 62 130
+                 A13 13 0 0 1 36 130 A13 13 0 0 1 10 130 Z"
+            />
+            <!-- Menacing angled eye slits -->
+            <rect class="ghost-eye" x="26" y="59" width="30" height="15" rx="4" transform="rotate(28 41 66)" />
+            <rect class="ghost-eye" x="68" y="59" width="30" height="15" rx="4" transform="rotate(-28 83 66)" />
+          </svg>
+          <img class="hero" src="/assets/adventurer_idle.png" alt="" />
+          <div class="ledge"></div>
+        </div>
+
+        <button class="cta" id="cta" type="button">PLAY TODAY'S CLIMB</button>
+        <p class="hook">Today's summit awaits · 3 climbs a day, best counts</p>
+      </div>
+    </main>
+    <script type="module" src="splash.ts" defer></script>
+  </body>
+</html>
